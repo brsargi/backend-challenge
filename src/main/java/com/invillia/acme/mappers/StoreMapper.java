@@ -15,9 +15,7 @@ public class StoreMapper {
         return StoreDto.builder()
                 .id(store.getId())
                 .name(store.getName())
-                .address(store.getAddress())
-                .createdAt(store.getCreatedAt())
-                .updatedAt(store.getUpdatedAt()).build();
+                .address(store.getAddress()).build();
     }
     
     public Store mapToStore(StoreDto storeDto){
@@ -25,9 +23,7 @@ public class StoreMapper {
         return Store.builder()
                 .id(storeDto.getId())
                 .name(storeDto.getName())
-                .address(storeDto.getAddress())
-                .createdAt(storeDto.getCreatedAt())
-                .updatedAt(storeDto.getUpdatedAt()).build();
+                .address(storeDto.getAddress()).build();
     }
     
     public Collection<StoreDto> mapToStoresDto(Collection<Store> stores){

@@ -1,6 +1,6 @@
 package com.invillia.acme.dtos;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,15 +14,13 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
-public class StoreDto {
-
+public class OrderItemDto {
+    
     private Long id;
     
-    private String name;
+    private String description;
     
-    private String address;
+    private BigDecimal price;
     
-    private LocalDateTime createdAt;
-    
-    private LocalDateTime updatedAt;
+    private Integer quantity;
 }

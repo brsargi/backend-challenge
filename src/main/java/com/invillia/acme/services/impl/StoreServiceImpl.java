@@ -52,9 +52,7 @@ public class StoreServiceImpl implements StoreService{
 
     @Override
     public Collection<Store> find(String name, String address) {
-    	
-    	System.out.println(name + " - " + address);
-    	
+    	    	
         return this.storeRepository.findByParameters(name, address);
     }
 }

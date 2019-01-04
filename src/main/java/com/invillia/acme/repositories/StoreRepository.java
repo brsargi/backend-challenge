@@ -1,14 +1,14 @@
 package com.invillia.acme.repositories;
 
 import com.invillia.acme.entities.Store;
-import java.util.List;
+import java.util.Collection;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface StoreRepository extends JpaRepository<Store, Long>, JpaSpecificationExecutor<Store> {
  
-    default List<Store> findByParameters(String name, String address) {
+    default Collection<Store> findByParameters(String name, String address) {
         return findAll(Specification.where(nameLike(name))
             .and(addressLike(address)));
     }

@@ -1,7 +1,6 @@
 package com.invillia.acme.entities;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,11 +13,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Table(name = "stores")
+@Table(name = "orders_itens")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,13 +23,15 @@ import org.springframework.data.annotation.LastModifiedDate;
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
 @EqualsAndHashCode
-public class Store implements Serializable{
+public class OrderItem {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String name;
+    private String description;
     
-    private String address;
+    private BigDecimal price;
+    
+    private Integer quantity;   
 }
