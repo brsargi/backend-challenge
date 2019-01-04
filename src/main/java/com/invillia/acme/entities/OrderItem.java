@@ -1,5 +1,6 @@
 package com.invillia.acme.entities;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
 @EqualsAndHashCode
-public class OrderItem {
+public class OrderItem implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

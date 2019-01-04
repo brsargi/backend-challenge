@@ -1,19 +1,16 @@
 package com.invillia.acme.entities;
 
-import com.invillia.acme.entities.enums.OrderStatus;
+import com.invillia.acme.entities.enums.PaymentStatus;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -25,8 +22,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Entity
-@Table(name = "orders")
+@Table(name = "payments")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,30 +32,26 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(includeFieldNames = true)
 @EqualsAndHashCode
-public class Order implements Serializable{
+public class Payment implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String address;
-    
-    private LocalDateTime confirmationDate;
-    
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private PaymentStatus status;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="order_id")
-    private Set<OrderItem> itens;
+    private String creditCardNumber;
     
-    @OneToOne(mappedBy = "order")
-    private Payment payment;
+    private LocalDateTime paymentDate;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order order;
     
     @PrePersist
     private void prePersist(){
-        
-        this.confirmationDate = LocalDateTime.now();
-        this.status = OrderStatus.WAITING_PAYMENT;
+        this.status = PaymentStatus.COMPLETE;
+        this.paymentDate = LocalDateTime.now();
     }
 }
