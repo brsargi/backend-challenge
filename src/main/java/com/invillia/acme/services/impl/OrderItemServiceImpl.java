@@ -2,7 +2,6 @@ package com.invillia.acme.services.impl;
 
 import com.invillia.acme.entities.Order;
 import com.invillia.acme.entities.OrderItem;
-import com.invillia.acme.exceptions.OrderItemCanNotBeRefundException;
 import com.invillia.acme.exceptions.ResourceNotFoundException;
 import com.invillia.acme.repositories.OrderItemRepository;
 import com.invillia.acme.services.OrderItemService;
@@ -23,10 +22,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public void refundById(Long orderId, Long orderItemId) {
-        
-        System.out.println("==============================");
-        System.out.println(orderId + " - " + orderItemId);
-
+       
         Order order = this.orderService.findById(orderId);
                 
         Optional<OrderItem> orderItem = order.getItens().stream().filter((item) -> item.getId().equals(orderItemId)).findFirst();

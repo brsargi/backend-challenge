@@ -1,6 +1,6 @@
 package com.invillia.acme.dtos;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,11 +18,9 @@ public class StoreDto {
 
     private Long id;
     
+    @NotEmpty(message = "The store name can't be empty.")
     private String name;
     
+    @NotEmpty(message = "The address store can't be empty.")
     private String address;
-    
-    private LocalDateTime createdAt;
-    
-    private LocalDateTime updatedAt;
 }

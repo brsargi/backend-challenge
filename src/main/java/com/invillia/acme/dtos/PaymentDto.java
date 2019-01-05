@@ -1,6 +1,7 @@
 package com.invillia.acme.dtos;
 
 import java.time.LocalDateTime;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class PaymentDto {
     
     private String status;
     
+    @NotEmpty(message = "The credit card number can't be empty.")
     private String creditCardNumber;
     
     private LocalDateTime paymentDate;

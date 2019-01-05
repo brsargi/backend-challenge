@@ -5,6 +5,7 @@ import com.invillia.acme.entities.Order;
 import com.invillia.acme.mappers.OrderMapper;
 import com.invillia.acme.services.OrderService;
 import java.util.Collection;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class OrderResource {
     }
     
     @PostMapping
-    public ResponseEntity insert(@RequestBody OrderDto orderDto){
+    public ResponseEntity insert(@RequestBody @Valid OrderDto orderDto){
         
         Order order = this.orderService.save(orderMapper.mapToOrder(orderDto));
         

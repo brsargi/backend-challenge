@@ -5,8 +5,7 @@ import com.invillia.acme.entities.Store;
 import com.invillia.acme.mappers.StoreMapper;
 import com.invillia.acme.services.StoreService;
 import java.util.Collection;
-import java.util.List;
-import org.springframework.data.repository.query.Param;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +32,7 @@ public class StoreResource {
     }
     
     @PostMapping
-    public ResponseEntity insert(@RequestBody StoreDto storeDto){
+    public ResponseEntity insert(@RequestBody @Valid StoreDto storeDto){
         
         Store store = this.storeService.save(storeMapper.mapToStore(storeDto));
         
@@ -42,7 +41,7 @@ public class StoreResource {
     
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody StoreDto storeDto, @PathVariable Long id){
+    public void update(@RequestBody @Valid StoreDto storeDto, @PathVariable Long id){
                
         this.storeService.update(storeMapper.mapToStore(storeDto), id);
     }

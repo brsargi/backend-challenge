@@ -4,6 +4,7 @@ import com.invillia.acme.dtos.PaymentDto;
 import com.invillia.acme.entities.Payment;
 import com.invillia.acme.mappers.PaymentMapper;
 import com.invillia.acme.services.PaymentService;
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class PaymentResource {
     }
     
     @PostMapping
-    public ResponseEntity generatePayment(@RequestBody PaymentDto paymentDto, @PathVariable Long orderId){
+    public ResponseEntity generatePayment(@RequestBody @Valid PaymentDto paymentDto, @PathVariable Long orderId){
         
         Payment payment = this.paymentService.generatePayment(paymentMapper.mapToPayment(paymentDto), orderId);
         
