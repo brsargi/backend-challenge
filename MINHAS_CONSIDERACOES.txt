@@ -13,3 +13,4 @@ Faltou implementar:
 - JPA: Eu utilizei alguns fetchTypes EAGER e alguns CascadeALL para otimizar o tempo de desenvolvimento, mas conforme a api cresce seria interessante rever essas práticas.
 - Faltou fazer validações mais completas.
 - Faltou disponibilizar a aplicação no Amazon AWS.
+- Faltou deixar as mensagens em arquivo properties a parte para facilitar a internacionalização.
