@@ -18,7 +18,7 @@ public class OrderItemResource {
         this.orderItemService = orderItemService;
     }
     
-    @DeleteMapping("refunded")
+    @DeleteMapping("/refunded")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void refundById(@PathVariable Long orderId, @PathVariable Long orderItemId){
         

@@ -37,7 +37,7 @@ public class OrderResource {
         return new ResponseEntity(orderMapper.mapToOrderDto(order), HttpStatus.CREATED);
     }
     
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable Long id){
         
         Order order = this.orderService.findById(id);
@@ -54,7 +54,7 @@ public class OrderResource {
         return new ResponseEntity(orderMapper.mapToOrdersDto(orders), HttpStatus.OK);
     }
     
-    @PatchMapping("{id}/refunded")
+    @PatchMapping("/{id}/refunded")
     public void refundOrderById(@PathVariable Long id){
         
         this.orderService.refundOrderById(id);

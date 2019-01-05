@@ -46,13 +46,6 @@ public class StoreResource {
         this.storeService.update(storeMapper.mapToStore(storeDto), id);
     }
     
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable Long id){
-        
-        this.storeService.deleteById(id);
-    }
-    
     @GetMapping
     public ResponseEntity find(@RequestParam(required = false) String name, @RequestParam(required = false) String address){
             	
