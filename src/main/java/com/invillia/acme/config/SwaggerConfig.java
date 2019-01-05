@@ -29,7 +29,7 @@ public class SwaggerConfig{
         .description("\"Application for sale of orders\"")
         .version("1.0.0")
         .license("Invillia")
-        .licenseUrl("https://www.invillia.com\"")
+        .licenseUrl("https://www.invillia.com")
         .build();
   }
 }
