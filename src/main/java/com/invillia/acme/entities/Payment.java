@@ -2,7 +2,9 @@ package com.invillia.acme.entities;
 
 import com.invillia.acme.entities.enums.PaymentStatus;
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -53,5 +55,19 @@ public class Payment implements Serializable{
     private void prePersist(){
         this.status = PaymentStatus.COMPLETE;
         this.paymentDate = LocalDateTime.now();
+    }
+    
+    public boolean isUntilTenDaysConfirmationPayment(){
+        
+        if(paymentDate != null){
+            
+            LocalDateTime now = LocalDateTime.now();
+            
+            long days = Duration.between(paymentDate, now).toDays();
+            
+            if(days <= 10l) return true;
+        }
+        
+        return false;
     }
 }

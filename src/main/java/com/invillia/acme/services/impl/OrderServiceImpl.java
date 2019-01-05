@@ -41,5 +41,15 @@ public class OrderServiceImpl implements OrderService{
         
         return this.orderRepository.findByParameters(address, status);
     }
+
+    @Override
+    public void refundOrderById(Long id) {
+
+        Order order = findById(id);
+        
+        order.refund();
+        
+        this.orderRepository.save(order);
+    }
     
 }

@@ -1,8 +1,11 @@
 package com.invillia.acme.entities;
 
 import com.invillia.acme.entities.enums.OrderStatus;
+import com.invillia.acme.entities.enums.PaymentStatus;
+import com.invillia.acme.exceptions.OrderCanNotBeRefund;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -59,5 +62,24 @@ public class Order implements Serializable{
         
         this.confirmationDate = LocalDateTime.now();
         this.status = OrderStatus.WAITING_PAYMENT;
+    }
+    
+    public boolean isCanBeRefund(){
+        
+        if(payment != null && payment.isUntilTenDaysConfirmationPayment()){
+            
+            return true;
+        }
+        
+        throw new OrderCanNotBeRefund("The order with id " + id + " can't be refund.");
+    }
+    
+    public void refund(){
+        
+        if(isCanBeRefund()){
+      
+            this.status = OrderStatus.REFUNDED;
+            this.payment.setStatus(PaymentStatus.REFUNDED);
+        }
     }
 }

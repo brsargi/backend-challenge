@@ -8,6 +8,7 @@ import java.util.Collection;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,10 +31,6 @@ public class OrderResource {
     @PostMapping
     public ResponseEntity insert(@RequestBody OrderDto orderDto){
         
-        System.out.println("===================================");
-        
-        System.out.println(orderDto);
-        
         Order order = this.orderService.save(orderMapper.mapToOrder(orderDto));
         
         return new ResponseEntity(orderMapper.mapToOrderDto(order), HttpStatus.CREATED);
@@ -54,5 +51,11 @@ public class OrderResource {
         Collection<Order> orders = this.orderService.find(address, status);
         
         return new ResponseEntity(orderMapper.mapToOrdersDto(orders), HttpStatus.OK);
+    }
+    
+    @PatchMapping("{id}/refunded")
+    public void refundOrderById(@PathVariable Long id){
+        
+        this.orderService.refundOrderById(id);
     }
 }

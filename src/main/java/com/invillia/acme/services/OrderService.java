@@ -10,4 +10,6 @@ public interface OrderService {
     Order findById(Long id);
         
     Collection<Order> find(String address, String status);
+    
+    void refundOrderById(Long id);
 }
