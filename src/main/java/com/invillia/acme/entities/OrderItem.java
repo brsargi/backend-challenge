@@ -1,11 +1,15 @@
 package com.invillia.acme.entities;
 
+import com.invillia.acme.entities.enums.OrderStatus;
+import com.invillia.acme.exceptions.OrderItemCanNotBeRefundException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,4 +39,14 @@ public class OrderItem implements Serializable{
     private BigDecimal price;
     
     private Integer quantity;   
+    
+    public boolean isCanBeRefund(OrderStatus orderStatus){
+        
+        if(OrderStatus.WAITING_PAYMENT.equals(orderStatus)){
+            return true;
+        }
+        
+        throw new OrderItemCanNotBeRefundException("The order item with id " + id + " can't be refund.");
+    }
+    
 }

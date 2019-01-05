@@ -56,9 +56,7 @@ public class StoreResource {
     
     @GetMapping
     public ResponseEntity find(@RequestParam(required = false) String name, @RequestParam(required = false) String address){
-        
-    	System.out.println("======================: " + name);
-    	
+            	
         Collection<StoreDto> storesDto = storeMapper.mapToStoresDto(this.storeService.find(name, address));
     
         return new ResponseEntity(storesDto, HttpStatus.OK);

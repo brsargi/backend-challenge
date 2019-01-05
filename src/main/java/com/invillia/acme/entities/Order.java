@@ -2,7 +2,8 @@ package com.invillia.acme.entities;
 
 import com.invillia.acme.entities.enums.OrderStatus;
 import com.invillia.acme.entities.enums.PaymentStatus;
-import com.invillia.acme.exceptions.OrderCanNotBeRefund;
+import com.invillia.acme.exceptions.OrderCanNotBeRefundException;
+import com.invillia.acme.exceptions.OrderItemCanNotBeRefundException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -51,10 +52,10 @@ public class Order implements Serializable{
     private OrderStatus status;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Set<OrderItem> itens;
     
-    @OneToOne(mappedBy = "order")
+    @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
     private Payment payment;
     
     @PrePersist
@@ -71,7 +72,7 @@ public class Order implements Serializable{
             return true;
         }
         
-        throw new OrderCanNotBeRefund("The order with id " + id + " can't be refund.");
+        throw new OrderCanNotBeRefundException("The order with id " + id + " can't be refund.");
     }
     
     public void refund(){
