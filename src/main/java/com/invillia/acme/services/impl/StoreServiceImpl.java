@@ -47,6 +47,8 @@ public class StoreServiceImpl implements StoreService{
     
         findById(id);
         
+        store.setId(id);
+        
         save(store);
     }
 

@@ -1,0 +1,15 @@
+Como tinha pouco tempo para o desenvolvimento da api, eu procurei focar em implementar a regra de negócio da melhor forma possível, utilizei o padrão REST para o desenvolvimento dos recursos, fiz alguns tratamentos de exceções, validações, utilizei o Flyway para o versionamento do banco de dados, fiz a configuração básica do Swagger e utilizei o banco de dados MySQL.
+
+OBS: Sobre a regra de negócio ("Refund Order or any Order Item"), o "Refund Order" eu entendi e realizei ela mudando o status do pedido, sobre o "Order Item" como não tinha uma regra específica descrita, eu segui pela regra que só pode remover um OrderItem quando o pedido ainda está aguardando pagamento.]
+
+Faltou implementar:
+
+- Eu criei um dockerfile para subir a aplicação, porém faltou fazer um docker compose para subir o banco junto.
+- Segurança: Com mais tempo eu implementaria a segurança utilizando JWT(Json Web Tokens), implementaria um gerador manualmente ou utilizaria uma ferramenta como o Keycloak.
+- Asynchronous processing: Eu utilizaria o Spring WebFlux ou processamento com Filas em alguns casos como o "refund" e o "payment".
+- Testes Unitário e de integração: Comecei implementar alguns testes, mas precisei finalizar o teste antes.
+- Paginação: Nas consultas seria interessante fazer paginação dos dados.
+- Cache: Eu utilizaria uma solução de cache como o EhCache.
+- JPA: Eu utilizei alguns fetchTypes EAGER e alguns CascadeALL para otimizar o tempo de desenvolvimento, mas conforme a api cresce seria interessante rever essas práticas.
+- Faltou fazer validações mais completas.
+- Faltou disponibilizar a aplicação no Amazon AWS.
